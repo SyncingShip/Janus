@@ -1,6 +1,8 @@
 # Janus
+Janus is a save manager for Hades by Supergiant Games.   
+This allows you to manage multiple saves, making it easier to back up and load saves with specific seeds.  
 ### Prerequistites and first time setup
-Janus Requires [Python 3](https://www.python.org)  
+Janus requires [Python 3](https://www.python.org)  
 To keep your controls and settings between saves, replace default.ctrls and default.xml in the config folder with Profile1.ctrls and Profile.xml   
 Run Janus with run.bat
 ### Backing up
