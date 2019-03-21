@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ConfigOptions>
+  <Brightness>0.6737968</Brightness>
+  <ControlsResetRevisionViewed>15086</ControlsResetRevisionViewed>
+  <DefaultControlsChosen>true</DefaultControlsChosen>
+  <DialogueVolume>0.347059</DialogueVolume>
+  <DisplayIndex>0</DisplayIndex>
+  <FxVolume>0.347059</FxVolume>
+  <LastPatchNoteRevisionViewed>14081</LastPatchNoteRevisionViewed>
+  <MusicVolume>0</MusicVolume>
+  <NewUpdateSoundRevisionViewed>15086</NewUpdateSoundRevisionViewed>
+  <NoBorder>true</NoBorder>
+  <ScreenshotCount>7</ScreenshotCount>
+  <ShowGameplayTimer>true</ShowGameplayTimer>
+  <Subtitles>true</Subtitles>
+  <TwitchRefreshToken />
+  <UseMouse>true</UseMouse>
+  <ValidCheckpoint>false</ValidCheckpoint>
+  <WindowX>0</WindowX>
+  <WindowY>0</WindowY>
+  <X>1920</X>
+  <Y>1080</Y>
+</ConfigOptions>

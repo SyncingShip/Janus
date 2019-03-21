@@ -3,7 +3,7 @@ import os, re
 def locate_janus_saves():
     return [f for f in os.listdir(".\\Saves\\") if re.search(r'^.+?\.sav$', f)]
 
-def overwrite_file(file1, file2):
+def copy_file(file1, file2):
     """
     Takes in two file paths
     Replaces file2 with the contents of file1
@@ -16,7 +16,6 @@ def overwrite_file(file1, file2):
 def check_hades_dir():
     home_dir = os.path.expanduser('~')
     if "Hades" in os.listdir(home_dir + "\\Documents\\Saved Games"):
-        print("Hades save directory found")
         return home_dir + "\\Documents\\Saved Games\\Hades"
     else:
         print("Cannot automatically find Hades directory. Please manually copy .sav files to Janus/Saves")
@@ -24,37 +23,83 @@ def check_hades_dir():
 def get_hades_savs(dir):
     return [f for f in os.listdir(dir) if re.search(r'^Profile\d\.sav$', f)]
 
+def cleanup_files(profile_number):
+    if os.path.isfile(HADES_SAV_DIR + "\\activeProfile"): os.remove(HADES_SAV_DIR + "\\activeProfile") 
+    if os.path.isfile(HADES_SAV_DIR + "\\activeProfile.bak"): os.remove(HADES_SAV_DIR + "\\activeProfile.bak")
+    copy_file(".\\config\\default.ctrls", f"{HADES_SAV_DIR}\\Profile{profile_number}.ctrls")
+    copy_file(".\\config\\default.ctrls", f"{HADES_SAV_DIR}\\Profile{profile_number}.ctrls.bak")
+    copy_file(".\\config\\default.xml", f"{HADES_SAV_DIR}\\Profile{profile_number}.xml")
+    copy_file(".\\config\\default.xml", f"{HADES_SAV_DIR}\\Profile{profile_number}.xml.bak")
+
+def delete_profile(profile_number):
+    files = [f for f in os.listdir(HADES_SAV_DIR) if re.search(r'^Profile' + re.escape(profile_number) + r'\..+$', f)]
+    for f in files:
+        os.remove(HADES_SAV_DIR + "\\" + f)
+    cleanup_files()
+    print(f"Profile {profile_number} successfully deleted")
+
+def handle_deletion():
+    if len(HADES_SAVS) > 0:
+        print("Choose a save to delete")
+        for count, sav in enumerate(HADES_SAVS):
+            print(f"{count+1}. {sav}")
+
+        choice = input("> ")
+        if re.search(r'^\d$', choice) and int(choice) <= len(HADES_SAVS):
+            delete_profile(choice)
+    else:
+        print("No Hades saves found")
+
 def handle_backup():
-    hades_sav_dir = check_hades_dir()
-    hades_savs = get_hades_savs(hades_sav_dir)
     print("Choose a save to back up")
 
-    for count, sav in enumerate(hades_savs):
+    for count, sav in enumerate(HADES_SAVS):
         print(f"{count+1}. {sav}")
 
     choice = input("> ")
-    if re.search(r'^\d{1,3}$', choice) and int(choice) <= len(hades_savs):
+    if re.search(r'^\d{1,3}$', choice) and int(choice) <= len(HADES_SAVS):
         filename = ""
         while not re.search(r'[\w\d\-\. ]+', filename):
             filename = input("Enter a filename to save as (File extension not required)\n > ")
-            file1 = hades_sav_dir + "\\" + hades_savs[int(choice) - 1]
+            file1 = HADES_SAV_DIR + "\\" + HADES_SAVS[int(choice) - 1]
             file2 = ".\\Saves\\" + filename + ".sav"
-            print(f"Writing from {file1} to {file2}")
-            overwrite_file(file1, file2)
+            print(f"Backing up {HADES_SAVS[int(choice) - 1]} into {filename}.sav")
+            copy_file(file1, file2)
             print("Success!")
 
 def handle_restore():
-    hades_sav_dir = check_hades_dir()
-    hades_savs = get_hades_savs(hades_sav_dir)
-    janus_savs = locate_janus_saves()
     print("Select sav which you which to restore")
 
-    for count, sav in enumerate(janus_savs):
+    for count, sav in enumerate(JANUS_SAVS):
         print(f"{count+1}. {sav}")
-        
+    
+    choice = input("> ")
+    while not (re.search(r'^\d{1,3}$', choice) and int(choice) <= len(JANUS_SAVS)):
+        choice = input("> ")
 
+    for x in range(1, 4):
+        if f"Profile{x}.sav" in HADES_SAVS:
+            print(f"{x}. Profile{x}")
+        else:
+            print(f"{x}. Profile{x} (Empty)")
+
+    profile_slot = input("> ")
+    while not re.search(r'^[1-3]$', profile_slot):
+        print(f"Please enter a valid option (1-3)")
+        profile_slot = input("> ")
+
+    janus_filepath = ".\\Saves\\" + JANUS_SAVS[int(choice)-1]
+    hades_filepath = f"{HADES_SAV_DIR}\\Profile{profile_slot}.sav"
+    print(f"Loading {JANUS_SAVS[int(choice)-1]} into Profile{profile_slot}.sav")
+    copy_file(janus_filepath, hades_filepath)
+    print("Performing cleanup...")
+    cleanup_files(int(profile_slot))
+    print("Success")
 
 if __name__ == "__main__":
+    HADES_SAV_DIR = check_hades_dir()
+    HADES_SAVS = get_hades_savs(HADES_SAV_DIR)
+    JANUS_SAVS = locate_janus_saves()
     print("Janus starting...")
     saves = locate_janus_saves()
     if saves != []:
@@ -62,10 +107,12 @@ if __name__ == "__main__":
 
     choice = ""
     while not re.search(r'[1-3]', choice):
-        choice = input("Please choose an option:\n1. Back up a Hades save\n2. Load a backed up save into Hades\n3. Exit\n> ")
-    if choice == "3":
+        choice = input("Please choose an option:\n1. Back up a Hades save\n2. Load a backed up save into Hades\n3. Delete profile\n4. Exit\n> ")
+    if choice == "4":
         exit(1)
     elif choice == "1":
         handle_backup()
     elif choice == "2":
         handle_restore()
+    elif choice == "3":
+        handle_deletion()
