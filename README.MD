@@ -3,7 +3,9 @@ Janus is a save manager for Hades by Supergiant Games.
 This allows you to manage multiple saves, making it easier to back up and load saves with specific seeds.  
 ### Prerequistites and first time setup
 Janus requires [Python 3](www.python.org/downloads/release/latest)  
-To keep your controls and settings between saves, replace default.ctrls and default.xml in the config folder with Profile1.ctrls and Profile1.xml   
+IMPORTANT: Make sure to tick "Add Python to PATH" when installing Python 3
+
+To keep your controls and settings between saves, replace default.ctrls and default.xml in the config folder with Profile1.ctrls and Profile1.xml from `\Documents\Saved Games\Hades`
 Run Janus with run.bat
 ### Backing up
 Pick which Hades profile you want to back up.   
@@ -14,6 +16,16 @@ Choose which profile number you want to load this save to
 ### Deleting
 Choose which Hades profile you want to wipe.  
 If you want to remove a backed up save, delete the .sav file in the Saves folder of Janus.
+
+### Common issues / Solutions
+If Janus isn't running:
+
+Go to "Manage App Execution Aliases" in windows settings
+If there are any aliases for Python.exe or Python3.exe, disable them
+
+Open cmd and type `python` or `python --version`
+If you get `'python' is not recognized as an internal or external command, operable program or batch file.` then there is something wrong with your python installation. 
+
 ### Disclaimer
 Modding Hades is not officially endorsed by Supergiant Games.  
 Any game crashes, save corruption, crashes or other problems resulting from modding are not their responsibility to deal with.  
