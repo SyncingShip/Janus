@@ -68,7 +68,7 @@ def handle_backup():
             print("Success!")
 
 def handle_restore():
-    print("Select sav which you which to restore")
+    print("Select which Janus sav you wish to Load")
 
     for count, sav in enumerate(JANUS_SAVS):
         print(f"{count+1}. {sav}")
@@ -115,7 +115,10 @@ if __name__ == "__main__":
             user_exit = True
         elif choice == "1":
             handle_backup()
+            JANUS_SAVS = locate_janus_saves()
         elif choice == "2":
             handle_restore()
+            HADES_SAVS = get_hades_savs(HADES_SAV_DIR)
         elif choice == "3":
             handle_deletion()
+            HADES_SAVS = get_hades_savs(HADES_SAV_DIR)
