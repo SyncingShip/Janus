@@ -24,7 +24,8 @@ Go to "Manage App Execution Aliases" in windows settings
 If there are any aliases for Python.exe or Python3.exe, disable them
 
 Open cmd and type `python` or `python --version`
-If you get `'python' is not recognized as an internal or external command, operable program or batch file.` then there is something wrong with your python installation. 
+If you get `'python' is not recognized as an internal or external command, operable program or batch file.` then there is something wrong with your python installation.  
+If you didn't choose to add python to your PATH, follow [this guide](https://geek-university.com/python/add-python-to-the-windows-path/) or reinstall python with this option
 
 ### Disclaimer
 Modding Hades is not officially endorsed by Supergiant Games.  
