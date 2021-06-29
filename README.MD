@@ -34,7 +34,7 @@ In a similar problem, disabling steam cloud saves may also solve this problem. T
 There is a possibility that Janus is detecting a Hades directory that is different to the one used by the Hades game itself. This again is a common issue if the Documents folder is backed up by OneDrive. If OneDrive is disabled, you should try editing config.json.  
 
 1. With the key `"override_hades_dir"` set `"false"` to `"true"`
-2. With the key `"hades_dir"` set the empty quotes to the directory you wish Janus to use. Please use double backslashes instead of single backslashes or single forward slashes as the separator. For example if the directory you want to use is `C:/Users/Player/OneDrive/Documents/Saved Games/Hades` you should enter this in the empty quotes: `C:\\\Users\\\Player\\\OneDrive\\\Documents\\\Saved Games\\\Hades`
+2. With the key `"hades_dir"` set the empty quotes to the directory you wish Janus to use. Please use double backslashes instead of single backslashes or single forward slashes as the separator. For example if the directory you want to use is `C:/Users/Player/OneDrive/Documents/Saved Games/Hades` you should enter this in the empty quotes: `C:\\Users\\Player\\OneDrive\\Documents\\Saved Games\\Hades`
 
 ### Disclaimer
 Modding Hades is not officially endorsed by Supergiant Games.  
