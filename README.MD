@@ -29,6 +29,8 @@ If you didn't choose to add python to your PATH, follow [this guide](https://gee
 
 If you have OneDrive enabled and your Documents folder is backed up in OneDrive, this will cause many problems. I highly recommend you [disable OneDrive](https://support.microsoft.com/en-us/office/turn-off-disable-or-uninstall-onedrive-f32a17ce-3336-40fe-9c38-6efb09f944b0) if you are not using it 
 
+In a similar problem, disabling steam cloud saves may also solve this problem. To do this, right click on Hades in Steam, select Properties and then untick "Keep games saves in the Steam Cloud for Hades"
+
 ### Disclaimer
 Modding Hades is not officially endorsed by Supergiant Games.  
 Any game crashes, save corruption, crashes or other problems resulting from modding are not their responsibility to deal with.  
