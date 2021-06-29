@@ -1,4 +1,4 @@
-import os, re
+import os, re, json, time
 
 def locate_janus_saves():
     return [f for f in os.listdir(".\\Saves\\") if re.search(r'^.+?\.sav$', f)]
@@ -96,15 +96,27 @@ def handle_restore():
     cleanup_files(int(profile_slot))
     print("Success")
 
-if __name__ == "__main__":
+if __name__ == "__main__": 
     user_exit = False
     HADES_SAV_DIR = check_hades_dir()
     HADES_SAVS = get_hades_savs(HADES_SAV_DIR)
     JANUS_SAVS = locate_janus_saves()
-    print("Janus starting...")
+
+    with open("./config.json") as jfile:
+        CONFIG = json.load(jfile)
+        jfile.close()
+
+    print("\nHades Save Dir has been automatically detected as " + HADES_SAV_DIR)
+
+    if CONFIG["override_hades_dir"].lower() == "true":
+        HADES_SAV_DIR = CONFIG["hades_dir"]
+        print("Hades Save Dir has been overriden to be " + HADES_SAV_DIR)
+
+    print("Loaded configuration")
+    
     saves = locate_janus_saves()
     if saves != []:
-        print(f"{len(saves)} backed up files found")
+        print(f"{len(saves)} backed up files found\n")
 
     
     while not user_exit:
