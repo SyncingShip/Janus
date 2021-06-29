@@ -27,6 +27,8 @@ Open cmd and type `python` or `python --version`
 If you get `'python' is not recognized as an internal or external command, operable program or batch file.` then there is something wrong with your python installation.  
 If you didn't choose to add python to your PATH, follow [this guide](https://geek-university.com/python/add-python-to-the-windows-path/) or reinstall python with this option
 
+If you have OneDrive enabled and your Documents folder is backed up in OneDrive, this will cause many problems. I highly recommend you [disable OneDrive](https://support.microsoft.com/en-us/office/turn-off-disable-or-uninstall-onedrive-f32a17ce-3336-40fe-9c38-6efb09f944b0) if you are not using it 
+
 ### Disclaimer
 Modding Hades is not officially endorsed by Supergiant Games.  
 Any game crashes, save corruption, crashes or other problems resulting from modding are not their responsibility to deal with.  
