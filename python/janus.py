@@ -32,10 +32,10 @@ def cleanup_files(profile_number):
     copy_file(".\\config\\default.xml", f"{HADES_SAV_DIR}\\Profile{profile_number}.xml.bak")
 
 def delete_profile(profile_number):
-    files = [f for f in os.listdir(HADES_SAV_DIR) if re.search(r'^Profile' + re.escape(profile_number) + r'\..+$', f)]
+    files = [f for f in os.listdir(HADES_SAV_DIR) if re.search(r'^Profile' + re.escape(profile_number) + r'(\.|_).+$', f)]
     for f in files:
         os.remove(HADES_SAV_DIR + "\\" + f)
-    cleanup_files(profile_number)
+    # cleanup_files(profile_number)
     print(f"Profile {profile_number} successfully deleted")
 
 def handle_deletion():
